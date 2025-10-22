@@ -85,455 +85,7 @@
         "wires": []
     },
     {
-        "id": "fc1d5e7de3dce45e",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "read",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 230,
-        "y": 380,
-        "wires": [
-            [
-                "9ff6b05dd8b0fa95"
-            ]
-        ]
-    },
-    {
-        "id": "62d280b889ce308d",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 620,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "9ff6b05dd8b0fa95",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "MY_MEM_0",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 420,
-        "y": 380,
-        "wires": [
-            [
-                "62d280b889ce308d",
-                "8ad16e9c8ee353c4"
-            ]
-        ]
-    },
-    {
-        "id": "ef6e5f58594e36ce",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "add",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 230,
-        "y": 260,
-        "wires": [
-            [
-                "2acafb5398b0d38e"
-            ]
-        ]
-    },
-    {
-        "id": "2acafb5398b0d38e",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "function 3",
-        "func": "let sum = flow.get(\"MY_MEM_0\");\nsum = sum + msg.payload;\nflow.set(\"MY_MEM_0\", sum);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8f5c3a020c6a3c85",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "clear",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "clear",
-        "payloadType": "str",
-        "x": 230,
-        "y": 320,
-        "wires": [
-            [
-                "4c8e9b63e9d192a6"
-            ]
-        ]
-    },
-    {
-        "id": "4c8e9b63e9d192a6",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "function 1",
-        "func": "flow.set(\"MY_MEM_0\", 0);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8ad16e9c8ee353c4",
-        "type": "mqtt out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "topic": "fibo/item/amount",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "a80406ddb0a5bc3e",
-        "x": 650,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "0b3a10faa5fa8281",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "add(dummy json)",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"id\":1,\"type\":\"Optical Proximity\",\"value\":1,\"detail\":\"NONE\"}",
-        "payloadType": "json",
-        "x": 240,
-        "y": 540,
-        "wires": [
-            [
-                "2d674ac210ac184a"
-            ]
-        ]
-    },
-    {
-        "id": "299d2684838b1fbb",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 1",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 580,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "2d674ac210ac184a",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "function 2",
-        "func": "msg.payload = msg.payload[\"value\"];\n\nreturn msg; ",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 540,
-        "wires": [
-            [
-                "299d2684838b1fbb",
-                "41e828574003517c"
-            ]
-        ]
-    },
-    {
-        "id": "abee6c476aa529f3",
-        "type": "mqtt out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "topic": "fibo/item/amount",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "a80406ddb0a5bc3e",
-        "x": 1130,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "41e828574003517c",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "function 4",
-        "func": "let sum = flow.get(\"MY_MEM_0\");\nsum = sum + msg.payload;\nflow.set(\"MY_MEM_0\", sum);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 540,
-        "wires": [
-            [
-                "b90c562781fb60a6"
-            ]
-        ]
-    },
-    {
-        "id": "ebda7f58b9f84b04",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 3",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 420,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "a1152b69f2511e73",
-        "type": "mqtt in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "topic": "tss/1/sensor/1",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "a871cc34bfc4dae3",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 250,
-        "y": 600,
-        "wires": [
-            [
-                "ebda7f58b9f84b04",
-                "2d674ac210ac184a"
-            ]
-        ]
-    },
-    {
-        "id": "ece57fb399228687",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1100,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "b90c562781fb60a6",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "MY_MEM_0",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 740,
-        "y": 540,
-        "wires": [
-            [
-                "ed6888bfbf18702d"
-            ]
-        ]
-    },
-    {
-        "id": "416a0b10228f9407",
-        "type": "mqtt in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "topic": "tss/1/sensor/10",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "a871cc34bfc4dae3",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 260,
-        "y": 660,
-        "wires": [
-            [
-                "1acf3891b41bf399"
-            ]
-        ]
-    },
-    {
-        "id": "1acf3891b41bf399",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "function 5",
-        "func": "msg.payload = msg.payload[\"value\"];\nflow.set(\"COR\", msg.payload);\n\nreturn msg; ",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 660,
-        "wires": [
-            [
-                "40a943db295d5c25"
-            ]
-        ]
-    },
-    {
-        "id": "40a943db295d5c25",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 5",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 580,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "ed6888bfbf18702d",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "function 6",
-        "func": "\nmsg.payload = msg.payload + \" : \" + flow.get(\"COR\");\n// let main_msg = msg.payload;\n// let sum = main_msg + cor;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 540,
-        "wires": [
-            [
-                "ece57fb399228687",
-                "abee6c476aa529f3"
-            ]
-        ]
-    },
-    {
-        "id": "9771751578f7c3e9",
+        "id": "917da9dad3840d90",
         "type": "mqtt in",
         "z": "f6f2187d.f17ca8",
         "name": "",
@@ -545,37 +97,120 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 240,
-        "y": 780,
+        "x": 260,
+        "y": 520,
         "wires": [
             [
-                "4ad4d8e998834864"
+                "38c24e3843fc76f7"
             ]
         ]
     },
     {
-        "id": "4ad4d8e998834864",
+        "id": "5c6ffa7e47189900",
         "type": "debug",
         "z": "f6f2187d.f17ca8",
-        "name": "debug 6",
+        "name": "IR1",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 560,
-        "y": 780,
+        "x": 670,
+        "y": 360,
         "wires": []
     },
     {
-        "id": "f049d5b7692f20a6",
+        "id": "38c24e3843fc76f7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "// Expected input payload example:\n// { slot: 3, type: \"Ultrasonic\", data_type: \"Input\", data: 56 }\n\nlet msgOut = null;\n\n// Ensure payload exists\nif (typeof msg.payload === \"object\" && msg.payload.type) {\n    const type = msg.payload.type.toLowerCase();  // normalize text\n    const slot = msg.payload.slot || 0;\n\n    // === Separate outputs based on sensor type ===\n    switch (type) {\n        case \"ir_distance\":\n            // Example: differentiate multiple IR sensors by slot\n            if (slot === 1) {\n                msg.topic = \"IR_Sensor_1\";\n                msgOut = [msg, null, null, null];\n            } else if (slot === 2) {\n                msg.topic = \"IR_Sensor_2\";\n                msgOut = [null, msg, null, null];\n            }\n            break;\n\n        case \"ultrasonic\":\n            msg.topic = \"Ultrasonic_Trigger\";\n            msgOut = [null, null, msg, null];\n            break;\n\n        case \"color_sensor\":\n            msg.topic = \"Camera_Color\";\n            msgOut = [null, null, null, msg];\n            break;\n\n        default:\n            msg.topic = \"Unknown\";\n            msgOut = [null, null, null, null];\n            break;\n    }\n}\n\n// Output order:\n// [0] → IR node 1\n// [1] → IR node 2\n// [2] → Ultrasonic\n// [3] → Camera Color\nreturn msgOut;\n",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 520,
+        "wires": [
+            [
+                "5c6ffa7e47189900",
+                "05b75952ee22c5ce"
+            ],
+            [
+                "c691878a4b66281b",
+                "5a9e62c3b4947177"
+            ],
+            [
+                "8301649b58fbd4c9"
+            ],
+            [
+                "3a7db6fd18141bd4"
+            ]
+        ]
+    },
+    {
+        "id": "c691878a4b66281b",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "IR2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "8301649b58fbd4c9",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Ultrasonic",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "3a7db6fd18141bd4",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Camera_color",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "ea6451c7705bfc8f",
         "type": "mqtt out",
         "z": "f6f2187d.f17ca8",
-        "name": "",
+        "name": "Servo",
         "topic": "fibo/sensor/cmd",
-        "qos": "",
+        "qos": "0",
         "retain": "",
         "respTopic": "",
         "contentType": "",
@@ -583,88 +218,37 @@
         "correl": "",
         "expiry": "",
         "broker": "a80406ddb0a5bc3e",
-        "x": 840,
-        "y": 940,
+        "x": 850,
+        "y": 400,
         "wires": []
     },
     {
-        "id": "5398013a3ac7f8c6",
-        "type": "debug",
+        "id": "05b75952ee22c5ce",
+        "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "debug 7",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "e5a628b72037d0ae",
-        "type": "trigger",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "op1": "{\"servo\":1,\"angle\":0}",
-        "op2": "{\"servo\":1,\"angle\":90}",
-        "op1type": "str",
-        "op2type": "json",
-        "duration": "500",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "ms",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
+        "name": "function 2",
+        "func": "// Expecting input payload like: { slot: 1, type: \"IR_distance\", data_type: \"Input\", data: 0 or 1 }\n\n// Extract IR value\nlet irValue = msg.payload.data;\n\n// Create command message\nlet servoMsg = {};\n\nif (irValue == 1) {\n    // Object detected\n    servoMsg = { \"servo\": 1, \"angle\": 90 };\n} else {\n    // No object\n    servoMsg = { \"servo\": 1, \"angle\": 0 };\n}\n\n// Replace original payload with servo command\nmsg.payload = servoMsg;\n\n// Optionally change topic for clarity\nmsg.topic = \"servo_control\";\n\nreturn msg;\n",
         "outputs": 1,
-        "x": 520,
-        "y": 1000,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 400,
         "wires": [
             [
-                "f049d5b7692f20a6",
-                "5398013a3ac7f8c6"
+                "ea6451c7705bfc8f"
             ]
         ]
     },
     {
-        "id": "b1224a7ae154dbaf",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "2",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 310,
-        "y": 1000,
-        "wires": [
-            [
-                "e5a628b72037d0ae"
-            ]
-        ]
-    },
-    {
-        "id": "2ad0d368f9533540",
+        "id": "c366dc97586e2e51",
         "type": "mqtt out",
         "z": "f6f2187d.f17ca8",
-        "name": "",
+        "name": "Servo",
         "topic": "fibo/sensor/cmd",
-        "qos": "",
+        "qos": "0",
         "retain": "",
         "respTopic": "",
         "contentType": "",
@@ -672,78 +256,27 @@
         "correl": "",
         "expiry": "",
         "broker": "a80406ddb0a5bc3e",
-        "x": 880,
-        "y": 1100,
+        "x": 850,
+        "y": 500,
         "wires": []
     },
     {
-        "id": "3a7c65250cc083d3",
-        "type": "debug",
+        "id": "5a9e62c3b4947177",
+        "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "debug 8",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 840,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "7532c3d407824ab6",
-        "type": "trigger",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "op1": "{\"servo\":2,\"angle\":0}",
-        "op2": "{\"servo\":2,\"angle\":180}",
-        "op1type": "str",
-        "op2type": "json",
-        "duration": "800",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "ms",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
+        "name": "function 3",
+        "func": "// Expecting input payload like: { slot: 1, type: \"IR_distance\", data_type: \"Input\", data: 0 or 1 }\n\n// Extract IR value\nlet irValue = msg.payload.data;\n\n// Create command message\nlet servoMsg = {};\n\nif (irValue == 1) {\n    // Object detected\n    servoMsg = { \"servo\": 2, \"angle\": 0 };\n} else {\n    // No object\n    servoMsg = { \"servo\": 2, \"angle\": 180 };\n}\n\n// Replace original payload with servo command\nmsg.payload = servoMsg;\n\n// Optionally change topic for clarity\nmsg.topic = \"servo_control\";\n\nreturn msg;\n",
         "outputs": 1,
-        "x": 560,
-        "y": 1160,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 500,
         "wires": [
             [
-                "2ad0d368f9533540",
-                "3a7c65250cc083d3"
-            ]
-        ]
-    },
-    {
-        "id": "9871b58d5e68ec2e",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "4",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 350,
-        "y": 1160,
-        "wires": [
-            [
-                "7532c3d407824ab6"
+                "c366dc97586e2e51"
             ]
         ]
     }
