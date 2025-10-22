@@ -31,11 +31,12 @@ void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int 
                 ",\"data_type\":\"" + flowText + "\"" +
                 ",\"data\":" + String(dataIn.data) + "}";
 
-  String msg = "N>Q " + json;
+  // String msg = "N>Q " + json;
+  String msg = json;
   msg.trim();
   if (msg.length() > 0) {
     Serial2.println(msg);
-    Serial.println(msg);
+    // Serial.println(msg);
   }
 }
 
