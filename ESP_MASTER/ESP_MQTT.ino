@@ -32,11 +32,11 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
   for (unsigned int i=0; i<length; i++) msg += (char)payload[i];
   msg.trim();
 
-  msg = "Q>N " + msg;
+  // msg = "Q>N " + msg;
   msg.trim();
   if (msg.length() > 0) {
     Serial2.println(msg);
-    Serial.println(msg);
+    // Serial.println(msg);
   }
 }
 
@@ -52,8 +52,7 @@ void setup() {
     delay(500);
   }
   Serial.print("\nWi-Fi connected: ");
-  Serial.p
-rintln(WiFi.localIP());
+  Serial.println(WiFi.localIP());
 
   client.setServer(mqtt_server, mqtt_port);
   client.setCallback(mqttCallback);
@@ -62,12 +61,13 @@ rintln(WiFi.localIP());
 void loop() {
   if (!client.connected()) mqttReconnect();
   client.loop();
-  // Receive message from the other ESP
-  // if (Serial2.available()) {
-  //   String msgFromOther = Serial2.readStringUntil('\n');
-  //   msgFromOther.trim();
-  //   if (msgFromOther.length() > 0) {
-  //     Serial.println(msgFromOther);
-  //   }
-  // }
+  //Receive message from the other ESP
+  if (Serial2.available()) {
+    String msgFromOther = Serial2.readStringUntil('\n');
+    msgFromOther.trim();
+    if (msgFromOther.length() > 0) {
+      Serial.println(msgFromOther);
+      client.publish(topic_pub, msgFromOther.c_str());
+    }
+  }
 }
