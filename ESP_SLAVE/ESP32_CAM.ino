@@ -12,6 +12,7 @@ const char *password = "FA123456";
 // ===== GPIO pins =====
 #define BUZZER_PIN 12
 #define BUTTON_PIN 13
+#define LED_FLASH 4  // Built-in flash LED on AI Thinker board
 
 // ===== ESP-NOW broadcast MAC (change to your receiver) =====
 uint8_t broadcastAddress[] = {0xFC, 0xE8, 0xC0, 0x7B, 0x73, 0x50};
@@ -49,6 +50,10 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(BUZZER_PIN, OUTPUT);
   digitalWrite(BUZZER_PIN, LOW);
+
+  // ---- Flash LED ----
+  pinMode(LED_FLASH, OUTPUT);
+  digitalWrite(LED_FLASH, LOW); // start OFF
 
   // ---- Read mode from button ----
   delay(300);
@@ -100,6 +105,7 @@ void setup() {
 
   // ---- Webserver mode ----
   Serial.println("Mode 1: Web Server");
+  digitalWrite(LED_FLASH, LOW);  // Ensure flash is OFF
   WiFi.mode(WIFI_AP);
   WiFi.softAP(ssid, password);
   IPAddress IP = WiFi.softAPIP();
@@ -113,8 +119,12 @@ void setup() {
 // ==================================================
 void loop() {
   if (mode == 0) {
+    // Turn on flash just before capture
+    digitalWrite(LED_FLASH, HIGH);
+    delay(300);               // allow exposure adjustment
     detectColorCenter();
-    delay(1000);
+    digitalWrite(LED_FLASH, LOW);
+    delay(700);               // remainder of 1000 ms total
   } else {
     delay(10000);
   }
@@ -171,7 +181,7 @@ void sendESPNow(int rgbValue) {
 }
 
 // ==================================================
-// Color-Detection Function (fixed 9-digit format)
+// Color-Detection Function
 // ==================================================
 void detectColorCenter() {
   camera_fb_t *fb = esp_camera_fb_get();
@@ -201,10 +211,9 @@ void detectColorCenter() {
 
   int r = rT / n, g = gT / n, b = bT / n;
 
-  // --- Convert to 9-digit fixed string ---
   char rgbStr[10];  // 9 digits + null
-  sprintf(rgbStr, "%03d%03d%03d", r, g, b);  // Always 3 digits each
-  int rgbInt = atoi(rgbStr);  // Convert back to int if you want numeric send
+  sprintf(rgbStr, "%03d%03d%03d", r, g, b);
+  int rgbInt = atoi(rgbStr);
 
   Serial.printf("Center RGB: R=%d G=%d B=%d → %s\n", r, g, b, rgbStr);
   sendESPNow(rgbInt);
